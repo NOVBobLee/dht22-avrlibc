@@ -13,7 +13,7 @@ int main(void)
 	print_init();
 
 	if (dht22_init(&dev, &DDRB, &PINB, &PORTB, 0) < 0) {
-		printf("Err: dht22_reset\n");
+		printf("Error: dht22_init\n");
 		return -1;
 	}
 
@@ -24,7 +24,7 @@ int main(void)
 		else
 			printf("Error! Code=%d\n", ret);
 
-		/* Collecting period need to be >2 seconds */
+		/* Collecting period needs to be >2 seconds */
 		_delay_ms(2000);
 	}
 
