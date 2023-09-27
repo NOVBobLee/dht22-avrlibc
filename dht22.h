@@ -9,9 +9,8 @@ struct dht22_ctx {
 	volatile uint8_t *ddr;
 	volatile uint8_t *pin;
 	volatile uint8_t *port;
-	uint16_t rh;
-	uint16_t temp;
-	uint32_t mru_ms;
+	float rh;
+	float temp;
 };
 
 int dht22_init(struct dht22_ctx *dev, volatile uint8_t *ddr,

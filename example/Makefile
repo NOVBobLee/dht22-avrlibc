@@ -17,7 +17,10 @@ CFLAGS += --param=min-pagesize=0
 INC := ..
 CFLAGS += -I$(INC)
 
-LDOPT = -Wl,--gc-sections
+LDFLAGS = -Wl,--gc-sections
+# for decimal-point format in printf()
+# https://www.nongnu.org/avr-libc/user-manual/group__avr__stdio.html#gaa3b98c0d17b35642c0f3e4649092b9f1
+LDFLAGS += -Wl,-u,vfprintf -lprintf_flt -lm
 
 TARGET := main
 HEX := $(TARGET).hex
@@ -28,7 +31,7 @@ OBJ := $(TARGET).o print_uart.o $(INC)/dht22.o
 all: $(ELF)
 
 $(ELF): $(OBJ)
-	$(CC) $(CFLAGS) $(LDOPT) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 $(OBJ): %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<

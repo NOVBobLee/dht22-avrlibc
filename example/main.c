@@ -20,7 +20,7 @@ int main(void)
 	for (int t = 0; t < REPEAT; ++t) {
 		ret = dht22_getdata(&dev);
 		if (0 == ret)
-			printf("Temperature=%hu RelativeHumidity=%hu\n", dev.temp, dev.rh);
+			printf("Temperature=%.1f RelativeHumidity=%.1f\n", dev.temp, dev.rh);
 		else
 			printf("Error! Code=%d\n", ret);
 

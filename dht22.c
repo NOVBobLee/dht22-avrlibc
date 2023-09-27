@@ -48,8 +48,8 @@ static int send_request(struct dht22_ctx *dev)
 int dht22_init(struct dht22_ctx *dev, volatile uint8_t *ddr,
 			   volatile uint8_t *pin, volatile uint8_t *port, uint8_t bit)
 {
-	dev->rh = 0;
-	dev->temp = 0;
+	dev->rh = 0.f;
+	dev->temp = 0.f;
 	dev->ddr = ddr;
 	dev->pin = pin;
 	dev->port = port;
@@ -110,8 +110,10 @@ int dht22_getdata(struct dht22_ctx *dev)
 		return -7;
 
 	/* translate the data */
-	dev->rh = data[0] << 8 | data[1];
-	dev->temp = data[2] << 8 | data[3];
+	dev->rh = .1f * (data[0] << 8 | data[1]);
+	dev->temp = .1f * ((data[2] & 0x7f) << 8 | data[3]);
+	if (data[2] & 0x80)
+		dev->temp = -dev->temp;
 
 	return 0;
 }
