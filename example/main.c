@@ -3,8 +3,6 @@
 #include "print_uart.h"
 #include "dht22.h"
 
-#define REPEAT 5
-
 int main(void)
 {
 	struct dht22_ctx dev;
@@ -17,15 +15,15 @@ int main(void)
 		return -1;
 	}
 
-	for (int t = 0; t < REPEAT; ++t) {
+	while (1) {
 		ret = dht22_getdata(&dev);
 		if (0 == ret)
-			printf("Temperature=%.1f RelativeHumidity=%.1f\n", dev.temp, dev.rh);
+			printf("T=%.1f°C rH=%.1f%%\n", dev.temp, dev.rh);
 		else
 			printf("Error! Code=%d\n", ret);
 
 		/* Collecting period needs to be >2 seconds */
-		_delay_ms(2000);
+		_delay_ms(10000);
 	}
 
 	return 0;
