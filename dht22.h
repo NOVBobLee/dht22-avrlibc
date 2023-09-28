@@ -11,6 +11,9 @@ struct dht22_ctx {
 	volatile uint8_t *port;
 	float rh;
 	float temp;
+#ifdef _DHT_DEBUG
+	uint8_t raw[5];
+#endif
 };
 
 int dht22_init(struct dht22_ctx *dev, volatile uint8_t *ddr,

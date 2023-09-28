@@ -53,6 +53,10 @@ int dht22_init(struct dht22_ctx *dev, volatile uint8_t *ddr,
 	dev->pin = pin;
 	dev->port = port;
 	dev->bit = bit;
+#ifdef _DHT_DEBUG
+	for (int i = 0; i < 5; ++i)
+		dev->raw[i] = 0;
+#endif
 
 	/* set high */
 	*dev->ddr |= _BV(dev->bit);
@@ -103,6 +107,11 @@ int dht22_getdata(struct dht22_ctx *dev)
 			}
 		}
 	}
+
+#ifdef _DHT_DEBUG
+	for (int i = 0; i < 5; ++i)
+		dev->raw[i] = data[i];
+#endif
 
 	/* cksum */
 	if ((data[0] + data[1] + data[2] + data[3]) != data[4])

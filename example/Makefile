@@ -17,6 +17,9 @@ CFLAGS += --param=min-pagesize=0
 INC := ..
 CFLAGS += -I$(INC)
 
+# dht22 debug raw data
+CFLAGS += -D_DHT_DEBUG
+
 LDFLAGS = -Wl,--gc-sections
 # for decimal-point format in printf()
 # https://www.nongnu.org/avr-libc/user-manual/group__avr__stdio.html#gaa3b98c0d17b35642c0f3e4649092b9f1
