@@ -101,7 +101,7 @@ static inline int receive_data(struct dht22_ctx *dev)
 #endif
 
 	/* cksum */
-	if ((data[0] + data[1] + data[2] + data[3]) != data[4])
+	if (((data[0] + data[1] + data[2] + data[3]) & 0xff) != data[4])
 		return -6;
 
 	/* translate the data */
