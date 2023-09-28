@@ -18,7 +18,7 @@ INC := ..
 CFLAGS += -I$(INC)
 
 # dht22 debug raw data
-CFLAGS += -D_DHT_DEBUG
+#CFLAGS += -D_DHT_DEBUG
 
 LDFLAGS = -Wl,--gc-sections
 # for decimal-point format in printf()
