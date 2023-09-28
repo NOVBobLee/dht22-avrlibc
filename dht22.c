@@ -2,7 +2,6 @@
 #include <util/delay.h>
 #include "dht22.h"
 
-#define REQ_INTERVAL_MS 2000
 #define MAX_LOOP 100
 
 #define DECLARE_WAIT_FOR_CHANGE(number, min_us, max_loop)			\
