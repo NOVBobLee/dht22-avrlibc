@@ -73,21 +73,20 @@ static inline int receive_data(struct dht22_ctx *dev)
 			/* confirm low(50us) */
 			if (wait_for_change(dev, TIMEOUT_LOOPS, 0) < 0)
 				return -3;
-			_delay_us(50);
+			_delay_us(45);
 
-			/* currently should be high */
-			if (0 == (*dev->pin & _BV(dev->bit)))
+			/* confirm high */
+			if (wait_for_change(dev, TIMEOUT_LOOPS, 1) < 0)
 				return -4;
 			_delay_us(20);
 
 			/* get bit 0 if confirm high(26-28us)
-			 *     bit 1 if confirm high(70us)
-			 * 15 loops is about 16 us */
-			if (wait_for_change(dev, 15, 0) < 0) {
+			 *     bit 1 if confirm high(70us) */
+			if (wait_for_change(dev, 10, 0) < 0) {
 				data[i] |= _BV(b);
 
-				/* delay for remainder 30+ us */
-				_delay_us(30);
+				/* delay for remainder 25+ us */
+				_delay_us(25);
 				if (wait_for_change(dev, TIMEOUT_LOOPS, 0) < 0)
 					return -5;
 			}
