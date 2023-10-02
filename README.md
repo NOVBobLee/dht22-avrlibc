@@ -11,12 +11,15 @@ measure the temperature and relative humidity in the air.
 ## Requirement
 
 1. Platform: AVR MCUs
-2. Library: [avr-libc](https://www.nongnu.org/avr-libc/)
+2. [avr-libc](https://www.nongnu.org/avr-libc/): the standard library AVR-GCC
+compiler using
+
 
 ## How to use
 
 1. Include the `dht22.h`
-2. Use `dht22_init()` to specify the port, pin ,ddr the DHT22 device using
+2. Use `dht22_init()` to specify the port, pin ,ddr and bit the DHT22 device
+using
 3. Use `dht22_getdata()` to get the temperature and relative humidity from DHT22
 
 ## License
