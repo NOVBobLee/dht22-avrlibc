@@ -25,7 +25,7 @@ struct dht22_ctx {
  * @port: specify PORT the DHT22 uses
  * @bit: specify the bit on PIN and PORT which the DHT22 uses
  *
- * Return on 0: Success, -1: Failure
+ * Return 0: Success, -1: Failure
  */
 int dht22_init(struct dht22_ctx *dev, volatile uint8_t *ddr,
 			   volatile uint8_t *pin, volatile uint8_t *port, uint8_t bit);
@@ -35,7 +35,7 @@ int dht22_init(struct dht22_ctx *dev, volatile uint8_t *ddr,
  *
  * @dev: specified which DHT22 device
  *
- * Return on 0: Success, <0: Failure
+ * Return 0: Success, <0: Failure
  *
  * Once success, the temperature and relative humidity will be written into
  * dev->temp and dev->rh.
